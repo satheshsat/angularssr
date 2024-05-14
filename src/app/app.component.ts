@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { SeoService } from './service/seo.service';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,11 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'angularssr';
+  constructor(private seoService: SeoService) {}
+  ngOnInit() {
+    this.seoService.setSEOData(
+      'Angularssr',
+      'Angularssr',
+    );
+  }
 }
