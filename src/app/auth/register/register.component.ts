@@ -15,6 +15,7 @@ export class RegisterComponent {
   form!: FormGroup;
   loading = false;
   submitted = false;
+  message = null;
 
   constructor(
       private formBuilder: FormBuilder,
@@ -35,6 +36,7 @@ export class RegisterComponent {
 
   onSubmit() {
     this.submitted = true;
+    this.message = null;
 
     // stop here if form is invalid
     if (this.form.invalid) {
@@ -45,6 +47,7 @@ export class RegisterComponent {
     this.authService.register(this.form.value).subscribe((res)=>{
       this.router.navigateByUrl('/auth/login');
     },err => {
+      this.message = err.error?.message ? err.error?.message : 'Something went wrong please try again';
       this.loading = false;
     })
   }

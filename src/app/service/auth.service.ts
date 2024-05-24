@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   url = 'https://expressjs-murex.vercel.app/api/auth/';
+  url2 = 'https://expressjs-murex.vercel.app/api/';
 
   constructor(private http: HttpClient) { }
 
@@ -20,5 +21,13 @@ export class AuthService {
 
   resetpass(email: string){
     return this.http.post(this.url+'resetpass', { email });
+  }
+
+  logout(){
+    return this.http.post(this.url+'logout', {});
+  }
+
+  profile(){
+    return this.http.get(this.url2+'profile', {});
   }
 }

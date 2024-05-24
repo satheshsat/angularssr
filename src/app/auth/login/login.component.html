@@ -22,6 +22,10 @@
                     Login
                 </button>
                 <a routerLink="/auth/register" class="btn btn-link">Register</a>
+                <a routerLink="/auth/resetpass" class="btn btn-link">Reset Password</a>
+            </div>
+            <div *ngIf="message">
+                <p class="text-danger">{{message}}</p>
             </div>
         </form>
     </div>

@@ -17,6 +17,8 @@ export class LoginComponent {
     loading = false;
     submitted = false;
 
+    message = null;
+
     constructor(
         private authService: AuthService,
         private formBuilder: FormBuilder,
@@ -36,6 +38,7 @@ export class LoginComponent {
 
     onSubmit() {
         this.submitted = true;
+        this.message = null;
 
         // stop here if form is invalid
         if (this.form.invalid) {
@@ -47,8 +50,10 @@ export class LoginComponent {
           console.log(res);
           this.storageService.set('userData', JSON.stringify(res.data))
           this.storageService.set('accessToken', res.accessToken)
+          this.storageService.set('refreshToken', res.refreshToken)
           this.router.navigateByUrl('/account/profile');
         }, (err)=>{
+          this.message = err.error?.message ? err.error?.message : 'Something went wrong please try again';
           this.loading = false;
           console.log(err);
         })

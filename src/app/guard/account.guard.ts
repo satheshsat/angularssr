@@ -1,6 +1,5 @@
 import { inject } from '@angular/core';
-import { CanActivateChildFn } from '@angular/router';
-import { Router } from 'express';
+import { CanActivateChildFn, Router } from '@angular/router';
 import { StorageService } from '../service/storage.service';
 
 export const accountGuard: CanActivateChildFn = (childRoute, state) => {
@@ -9,5 +8,6 @@ export const accountGuard: CanActivateChildFn = (childRoute, state) => {
   if(storageService.get('accessToken')){
     return true;  
   }
+  router.navigateByUrl('/auth/login');
   return false;
 };
