@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { StorageService } from '../../service/storage.service';
+import { CookieService } from '../../service/cookie.service';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,7 @@ export class LoginComponent {
         private formBuilder: FormBuilder,
         private router: Router,
         private storageService: StorageService,
+        private cookieService: CookieService
     ) { }
 
     ngOnInit() {
@@ -49,8 +51,8 @@ export class LoginComponent {
         this.authService.login(this.f['email'].value, this.f['password'].value).subscribe((res: any)=>{
           console.log(res);
           this.storageService.set('userData', JSON.stringify(res.data))
-          this.storageService.set('accessToken', res.accessToken)
-          this.storageService.set('refreshToken', res.refreshToken)
+          this.cookieService.set('accessToken', res.accessToken)
+          this.cookieService.set('refreshToken', res.refreshToken)
           this.router.navigateByUrl('/account/profile');
         }, (err)=>{
           this.message = err.error?.message ? err.error?.message : 'Something went wrong please try again';

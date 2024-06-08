@@ -1,11 +1,11 @@
 import { inject } from '@angular/core';
 import { CanActivateChildFn, Router } from '@angular/router';
-import { StorageService } from '../service/storage.service';
+import { CookieService } from '../service/cookie.service';
 
 export const authGuard: CanActivateChildFn = (childRoute, state) => {
   const router = inject(Router);
-  const storageService = inject(StorageService);
-  if(storageService.get('accessToken')){
+  const cookieService = inject(CookieService);
+  if(cookieService.get('accessToken')){
     router.navigateByUrl('/account/profile');
     return false;  
   }
