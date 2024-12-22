@@ -1,12 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 
 import { AuthService } from './auth.service';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { tokenInterceptor } from '../interceptor/token.interceptor';
 
 describe('AuthService', () => {
   let service: AuthService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [],
+      providers: [provideHttpClient(withFetch(), withInterceptors([tokenInterceptor]) )]
+    });
     service = TestBed.inject(AuthService);
   });
 
