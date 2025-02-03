@@ -6,7 +6,7 @@ import { tokenInterceptor } from '../interceptor/token.interceptor';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('AuthService', () => {
-  let service: AuthService;
+  let authService: AuthService;
   let httpMock: HttpTestingController;
 
   const mockResponse = { success: true, message: 'Request successful' };
@@ -16,7 +16,7 @@ describe('AuthService', () => {
       imports: [HttpClientTestingModule],
       providers: [AuthService, provideHttpClient(withFetch(), withInterceptors([tokenInterceptor]) )]
     });
-    service = TestBed.inject(AuthService);
+    authService = TestBed.inject(AuthService);
     httpMock = TestBed.inject(HttpTestingController);
   });
 
@@ -26,7 +26,7 @@ describe('AuthService', () => {
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(authService).toBeTruthy();
   });
 
   it('should login user successfully', () => {
