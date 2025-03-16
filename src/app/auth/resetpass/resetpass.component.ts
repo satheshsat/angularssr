@@ -5,11 +5,10 @@ import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-resetpass',
-  standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './resetpass.component.html',
-  styleUrl: './resetpass.component.scss'
+    selector: 'app-resetpass',
+    imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
+    templateUrl: './resetpass.component.html',
+    styleUrl: './resetpass.component.scss'
 })
 export class ResetpassComponent {
 
